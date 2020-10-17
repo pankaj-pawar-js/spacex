@@ -11,7 +11,7 @@ for (let i = 2006; i <= 2020; i++) {
 
 const FilterPanel = ({ history, location }) => {
     const [context, dispatch] = useServerData();
-    console.log("****************context: ", context);
+    // console.log("****************context: ", context);
 
     const extractFilters = (type, filterVal) => {
         // update url
@@ -31,7 +31,7 @@ const FilterPanel = ({ history, location }) => {
     }
 
     const handleCellSelection = (type, filterVal) => {
-        console.log("filterVal => ", filterVal);
+        // console.log("filterVal => ", filterVal);
 
         const filter = extractFilters(type, filterVal);
         history.push({

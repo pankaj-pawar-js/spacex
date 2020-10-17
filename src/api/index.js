@@ -7,5 +7,9 @@ export function apiFactory(http) {
   };
 }
 
-const http = httpClient('http://localhost:3000');
+// console.log(" process.env.PORT: ", process.env.PORT);
+
+const DEFAULT_PORT = process.env.PORT || 3000;
+
+const http = httpClient(`http://localhost:${DEFAULT_PORT}`);
 export const api = apiFactory(http);

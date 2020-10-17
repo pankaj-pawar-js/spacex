@@ -1,5 +1,4 @@
 export default function reducer(state, action) {
-    console.log(action, state)
     switch (action.type) {
         case "SET_FILTER": {
 

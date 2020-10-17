@@ -8,7 +8,7 @@ import querystring from 'querystring';
 
 const Home = (props) => {
   const [allLaunches, dispatch] = useServerData((data, dispatch) => {
-    console.log("store: => ", data);
+    // console.log("store: => ", data);
     return [data.launches || [], dispatch];
   });
 

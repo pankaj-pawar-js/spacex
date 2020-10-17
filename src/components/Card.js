@@ -4,7 +4,6 @@ import React from 'react';
 const Card = ({ data }) => {
     if (data) {
         const { mission_name = "NA", flight_number = "NA", mission_id = "NA", launch_year = "NA", land_success = "NA", launch_success = "NA", links } = data;
-        // console.log("******data : ", data);
 
         return (
             <div className="card">

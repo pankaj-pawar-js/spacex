@@ -58,7 +58,13 @@ const Home = (props) => {
 };
 
 Home.fetchData = () => {
-  return api.todos.all().then(launches => {
+  return fetch('https://api.spacexdata.com/v3/launches?limit=100').then(res => {
+    if (!res.ok) {
+      throw new Error(res.statusText);
+    }
+
+    return res.json();
+  }).then(launches => {
     const returnData = {
       launches,
       filter: {

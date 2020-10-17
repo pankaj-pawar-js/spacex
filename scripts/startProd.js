@@ -6,7 +6,7 @@ const cluster = require('cluster');
 
 const { app } = require('../build/server');
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 80;
 
 // Use the native Node.js cluster module to create a worker processes for each CPU
 if (cluster.isMaster) {
@@ -27,8 +27,7 @@ if (cluster.isMaster) {
     }
 
     console.info(
-      `Server running on port ${PORT} -- Worker pid: ${
-        cluster.worker.process.pid
+      `Server running on port ${PORT} -- Worker pid: ${cluster.worker.process.pid
       }`
     );
   });

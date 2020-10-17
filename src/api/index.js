@@ -7,7 +7,7 @@ export function apiFactory(http) {
   };
 }
 
-const DEFAULT_PORT = process.env.PORT || 3000;
+const DEFAULT_PORT = process.env.PORT || 80;
 const HOST = process.env.HOST || '0.0.0.0';
 
 console.log(" process.env.PORT: ", process.env.PORT, "     HOST: ", HOST);

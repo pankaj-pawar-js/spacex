@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React from 'react';
 import Cell from './Cell';
 import querystring from 'querystring';
 import { useServerData } from '../state/serverDataContext';
@@ -43,9 +43,9 @@ const FilterPanel = ({ history, location }) => {
     const arrangeCell = (type, value) => {
         const cellRows = [];
         let selectedCell;
-        if (context.filter && context.filter.year && type == "year") {
+        if (context.filter && context.filter.year && type === "year") {
             selectedCell = `year_${context.filter.year}`
-        } else if (context.filter && context.filter.launch_success && type == "launch_success") {
+        } else if (context.filter && context.filter.launch_success && type === "launch_success") {
             selectedCell = `launch_success_${context.filter.launch_success}`
         }
         for (let i = 0; i < value.length; i = i + 2) {

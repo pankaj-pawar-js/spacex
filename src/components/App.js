@@ -10,7 +10,6 @@ const LoadableHome = Loadable({
 });
 
 const App = () => {
-  console.log("App");
   return (
     <div className="app">
       <Head />

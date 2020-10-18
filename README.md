@@ -39,6 +39,10 @@ A fairly basic Express application in `server/app.js` handles serving static ass
 
 The entrypoint for the client-side code (`src/index.js`) and `src/main.js` to hydrate the React application.
 
+## Deployment
+
+This App is deployed on heroku. [Live Link : https://spacex-20.herokuapp.com/](https://spacex-20.herokuapp.com/)
+
 ## Lighthouse Screenshot:
 
 ![screenshot](./lighthouse.PNG)

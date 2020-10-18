@@ -1,5 +1,17 @@
 # SpaceX SSR React App ⚛️
 
+## How it looks?
+
+![spacex App](./screenshots/without_filters.PNG)
+
+## How it works?
+
+- When there is no filters applied. It will fetch first 100 results(max 100) via spaceX api. It will look like
+  ![No filters](./screenshots/without_filters.PNG)
+
+- When you applied filters like year, successful launch or successful landing, then it will fetch first 100 results(100 max) via spaceX api. It will look like
+  ![with filters](./screenshots/with_filters.PNG)
+
 **What's included:**
 
 - Server-side rendering with code splitting (via the excellent [React Loadable](https://github.com/thejameskyle/react-loadable) package)
@@ -17,8 +29,9 @@
 ## Development
 
 - `npm start:dev`
+
   - Start the dev server at [http://localhost:3000](http://localhost:3000) or you can set the PORT.
-  
+
 - `npm test`
   - Start `jest` in watch mode
 
@@ -43,6 +56,26 @@ The entrypoint for the client-side code (`src/index.js`) and `src/main.js` to hy
 
 This App is deployed on heroku. [Live Link : https://spacex-20.herokuapp.com/](https://spacex-20.herokuapp.com/)
 
-## Lighthouse Screenshot:
+## Screenshot:
 
-![screenshot](./lighthouse.PNG)
+### Lighthouse
+
+![lighthouse screenshot](./screenshots/lighthouse.PNG)
+
+### responsive design
+
+#### screen size above 1440px
+
+![above 1440px](./screenshots/above_1440.PNG)
+
+#### screen size between 1024px and 1440px
+
+![1024_to_1440](./screenshots/1024_to_1440.PNG)
+
+#### screen size between 700px and 1024px
+
+![700_to_1024](./screenshots/700_to_1024.PNG)
+
+#### screen size below 700px
+
+![below 700px](./screenshots/below_700.PNG)

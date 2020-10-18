@@ -7,7 +7,7 @@ const Card = ({ data }) => {
 
         return (
             <div className="card">
-                <img alt="" src={links.mission_patch ? links.mission_patch : ""} />
+                <img alt="" src={links.mission_patch_small ? links.mission_patch_small : ""} />
                 <div style={{ margin: "15px 0", color: "darkblue" }}>
                     <b>{mission_name} # {flight_number}</b>
                 </div>

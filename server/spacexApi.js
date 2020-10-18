@@ -1,10 +1,10 @@
 import { Router } from 'express';
 import fetch from 'isomorphic-unfetch';
 
-export const todoRoutes = () => {
-  const todoRoutes = new Router();
+export const spaceXRoutes = () => {
+  const router = new Router();
 
-  todoRoutes.get('/api/v1/spacex', (_req, res) => {
+  router.get('/api/v1/spacex', (_req, res) => {
     fetch('https://api.spacexdata.com/v3/launches?limit=100').then(res => {
       if (!res.ok) {
         throw new Error(res.statusText);
@@ -14,16 +14,6 @@ export const todoRoutes = () => {
     });
   });
 
-  todoRoutes.post('/api/todos', (req, res) => {
-    const newTodo = req.body;
-    newTodo.id = Date.now();
 
-    todos.push(newTodo);
-
-    setTimeout(() => {
-      res.json(newTodo);
-    }, 100);
-  });
-
-  return todoRoutes;
+  return router;
 };

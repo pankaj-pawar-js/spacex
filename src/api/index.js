@@ -1,9 +1,9 @@
 import { httpClient } from './httpClient';
-import { todosApi } from './todosApi';
+import { spaceXApi } from './spaceXApi';
 
 export function apiFactory(http) {
   return {
-    todos: todosApi(http)
+    spaceX: spaceXApi(http)
   };
 }
 

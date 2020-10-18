@@ -12,15 +12,20 @@ const Home = (props) => {
     return [data.launches || [], dispatch];
   });
 
+  const [filter] = useServerData((data, dispatch) => {
+    // console.log("store: => ", data);
+    return [data.filter || [], dispatch];
+  });
+
   const [launches, setLaunches] = useState(allLaunches);
   const { location } = props;
 
-  const filterLaunchDataBasedOnQS = (filter) => {
+  const filterLaunchDataBasedOnQS1 = (filter) => {
     let filterData;
-    if (filter.year && (filter.launch_success === true || filter.launch_success === false)) {
-      filterData = allLaunches.filter(item => item.launch_year === filter.year && item.launch_success === filter.launch_success);
-    } else if (filter.year) {
-      filterData = allLaunches.filter(item => item.launch_year === filter.year);
+    if (filter.launch_year && (filter.launch_success === true || filter.launch_success === false)) {
+      filterData = allLaunches.filter(item => item.launch_year === filter.launch_year && item.launch_success === filter.launch_success);
+    } else if (filter.launch_year) {
+      filterData = allLaunches.filter(item => item.launch_year === filter.launch_year);
     } else if (filter.launch_success === true || filter.launch_success === false) {
       filterData = allLaunches.filter(item => item.launch_success === filter.launch_success);
     } else {
@@ -29,10 +34,30 @@ const Home = (props) => {
     return filterData;
   }
 
+  const filterLaunchDataBasedOnQS = (params) => {
+    const search = querystring.stringify(params);
+    api.spaceX.default(search).then(launches => {
+      const returnData = {
+        launches,
+        filter: {
+          launch_year: params.launch_year,
+          launch_success: params.launch_success,
+          land_success: params.land_success
+        }
+      };
+
+      return returnData;
+    }).then((data) => {
+      setLaunches(data.launches);
+    });
+  }
+
   useEffect(() => {
     // check if query string is set
-    if (location.search) {
-      const filter = querystring.parse(location.search.split("?")[1]);
+    if (filter) {
+      /*
+      
+      const filter = allLaunches.filter;
       dispatch({ type: "SET_FILTER", payload: { ...filter } });
 
       if (filter.launch_success === "True") {
@@ -40,11 +65,12 @@ const Home = (props) => {
       } else if (filter.launch_success === "False") {
         filter.launch_success = false;
       }
+      */
 
-      const filterData = filterLaunchDataBasedOnQS(filter);
-      setLaunches(filterData);
+      filterLaunchDataBasedOnQS(filter);
+
     }
-  }, [location.search]);
+  }, [filter]);
 
   return (
     <div>
@@ -57,20 +83,20 @@ const Home = (props) => {
   );
 };
 
-Home.fetchData = () => {
-  return fetch('https://api.spacexdata.com/v3/launches?limit=100').then(res => {
-    if (!res.ok) {
-      throw new Error(res.statusText);
-    }
+Home.fetchData = (req) => {
+  const search = req.url.split("?")[1];
+  const params = querystring.parse(search);
 
-    return res.json();
-  }).then(launches => {
+
+  console.log("*************req.url => ", params);
+
+  return api.spaceX.default(search).then(launches => {
     const returnData = {
       launches,
       filter: {
-        year: null,
-        launch_success: null,
-        land_success: null
+        launch_year: params.launch_year,
+        launch_success: params.launch_success,
+        land_success: params.land_success
       }
     };
     // console.log("***************** launches =>", returnData);

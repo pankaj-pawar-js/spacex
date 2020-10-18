@@ -32,7 +32,11 @@ const FilterPanel = ({ history, location }) => {
 
     const handleCellSelection = (type, filterVal) => {
         // console.log("filterVal => ", filterVal);
-
+        if (filterVal === 'True') {
+            filterVal = "true";
+        } else if (filterVal === 'False') {
+            filterVal = "false";
+        }
         const filter = extractFilters(type, filterVal);
         history.push({
             pathname: '/',
@@ -43,10 +47,12 @@ const FilterPanel = ({ history, location }) => {
     const arrangeCell = (type, value) => {
         const cellRows = [];
         let selectedCell;
-        if (context.filter && context.filter.year && type === "year") {
-            selectedCell = `year_${context.filter.year}`
+        if (context.filter && context.filter.launch_year && type === "launch_year") {
+            selectedCell = `launch_year_${context.filter.launch_year}`
         } else if (context.filter && context.filter.launch_success && type === "launch_success") {
             selectedCell = `launch_success_${context.filter.launch_success}`
+        } else if (context.filter && context.filter.land_success && type === "land_success") {
+            selectedCell = `land_success_${context.filter.land_success}`
         }
         for (let i = 0; i < value.length; i = i + 2) {
             cellRows.push(<div key={`${type}_${value[i]}`} className="cell-row">
@@ -63,18 +69,18 @@ const FilterPanel = ({ history, location }) => {
             <div>
                 <div className="bottom-border">Launch Year</div>
                 <div>
-                    {arrangeCell("year", years)}
+                    {arrangeCell("launch_year", years)}
                 </div>
 
             </div>
             <div>
                 <div className="bottom-border">Successful Launch</div>
-                {arrangeCell("launch_success", ["True", "False"])}
+                {arrangeCell("launch_success", ["true", "false"])}
             </div>
 
             <div>
                 <div className="bottom-border">Successful Landing</div>
-                {arrangeCell("land_success", ["True", "False"])}
+                {arrangeCell("land_success", ["true", "false"])}
             </div>
         </div>
     );
